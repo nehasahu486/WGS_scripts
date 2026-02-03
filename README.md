@@ -3,7 +3,7 @@ This repository contains scripts used for various WGS projects of _Magnaporthe o
 
 
 ## Table of Contents
-- [WGS - Gene Knockout Confirmation](analysis/gene_knockout_confirmation_workflow.md) - Visualize gene deletions in null mutants
+- [WGS - Gene Knockout Confirmation](analysis/wgs_gene_knockout_confirmation.md) - Visualize gene deletions in null mutants
 
 ### Data Structure
 
