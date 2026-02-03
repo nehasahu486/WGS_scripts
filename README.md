@@ -7,9 +7,8 @@ This repository contains scripts used for various WGS projects of _Magnaporthe o
 
 ### Data Structure
 
-- `data/results/` - Processed analysis results, plots, and summary tables (if any)
-- `scripts/` - Scripts and/or workflows used
 - `analysis/` - Detailed Markdown files
+- `scripts/` - Scripts and/or workflows used
 
 
 ## Pipeline Execution Environment
