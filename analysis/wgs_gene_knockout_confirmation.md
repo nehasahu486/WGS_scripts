@@ -181,7 +181,6 @@ IGV:
 <figure>
 <img src="images/example_wgs_knockout.png"
 alt="Gene Knockout Example" />
-<figcaption aria-hidden="true">Gene Knockout Example</figcaption>
 </figure>
 
 **Key Features of a Gene Deletion:**
