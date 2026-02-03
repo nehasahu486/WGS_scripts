@@ -1,9 +1,9 @@
 # Whole Genome Sequencing
-This repository contains scripts used for various WGS projects
+This repository contains scripts used for various WGS projects of _Magnaporthe oryzae_
 
 
 ## Table of Contents
-- [WGS - Gene Knockout Confirmation](analysis/gene_knockout_confirmation_workflow.md) - Visualize gene deletions in null mutants of _Magnaporthe oryzae_
+- [WGS - Gene Knockout Confirmation](analysis/gene_knockout_confirmation_workflow.md) - Visualize gene deletions in null mutants
 
 ### Data Structure
 
