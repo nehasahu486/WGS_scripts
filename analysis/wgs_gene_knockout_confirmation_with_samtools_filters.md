@@ -324,7 +324,7 @@ The script generates detailed statistics for each BAM category:
 samtools flagstat "$bam_unique" > "${sample_name}_unique_stats.txt"
 ```
 
-**Critical QC Metrics:**
+**QC Metrics:**
 
 \- **Total reads processed**: Should be consistent across all categories
 
