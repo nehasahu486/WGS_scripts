@@ -443,15 +443,9 @@ p1 <- ggplot(snp_filt, aes(x = quality, y = SNPs, color = Background, size = SNP
     legend.title = element_text(face = "bold"),
     legend.text = element_text()
   )
-
-p1
-```
-
-![](wgs_background_strain_check_files/figure-gfm/snp-scatterplot-1.png)<!-- -->
-
-``` r
 ggsave(here("analysis/images/background_determination_scatter.png"), p1, width = 16, height = 8, dpi = 300)
 ```
+![](images/background_determination_scatter.png)
 
 ### Total SNPs Comparison Bar Plot
 
@@ -486,15 +480,11 @@ p2 <- total_snps %>%
     legend.title = element_text(face = "bold"),
     panel.grid.minor = element_blank()
   )
-
-p2
-```
-
-![](wgs_background_strain_check_files/figure-gfm/total-snps-barplot-1.png)<!-- -->
-
-``` r
 ggsave(here("analysis/images/total_snps_comparison.png"), p2, width = 12, height = 6, dpi = 300)
 ```
+
+![](images/total_snps_comparison.png)
+
 
 #### Fold Difference Analysis
 
@@ -534,14 +524,9 @@ p3 <- total_snps_wide %>%
     panel.grid.minor = element_blank()
   )
 
-p3
-```
-
-![](wgs_background_strain_check_files/figure-gfm/fold-difference-plot-1.png)<!-- -->
-
-``` r
 ggsave(here("analysis/images/fold_difference_confidence.png"), p3, width = 10, height = 6, dpi = 300)
 ```
+![](images/fold_difference_confidence.png)
 
 From this example, the positive control behaves as expected: DPRE1
 aligns with the Guy11 background, showing fewer SNPs relative to Guy11
