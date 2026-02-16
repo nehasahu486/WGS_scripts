@@ -2,7 +2,7 @@
 #SBATCH -p tsl-medium
 #SBATCH --wckey=talbot_core
 #SBATCH -N 1
-#SBATCH --cpus-per-task=24
+#SBATCH --cpus-per-task=28
 #SBATCH --mem 100000
 #SBATCH -o slurm.%j.out
 #SBATCH -e slurm.%j.err
@@ -104,7 +104,7 @@ find "$input_dir1" "$input_dir2" -type f \( -name "*_1.fq.gz" -o -name "*_1.fast
     
     # 3. PROPERLY PAIRED READS (0x2 = read mapped in proper pair)
     echo "  - Properly paired reads"
-    samtools view -@ 28 -bS -f 2 "$sam_file" | samtools sort -@ 28 -o "$bam_paired" -
+    samtools view -@ 28 -bS -f 1 -f 2 "$sam_file" | samtools sort -@ 28 -o "$bam_paired" -
     if [ -s "$bam_paired" ]; then
         samtools index "$bam_paired"
         samtools flagstat "$bam_paired" > "${output_dir}/${sample_name}_paired_stats.txt"
@@ -113,7 +113,7 @@ find "$input_dir1" "$input_dir2" -type f \( -name "*_1.fq.gz" -o -name "*_1.fast
     # 4. UNIQUE + PROPERLY PAIRED (most stringent)
     # Combines: uniquely mapped (MAPQ>=10) AND properly paired AND primary only
     echo "  - Unique AND properly paired (MOST STRINGENT)"
-    samtools view -@ 28 -bS -q 10 -f 2 -F 4 -F 256 -F 2048 "$sam_file" | samtools sort -@ 28 -o "$bam_unique_paired" -
+    samtools view -@ 28 -bS -q 10 -f 1 -f 2 -F 4 -F 256 -F 2048 "$sam_file" | samtools sort -@ 28 -o "$bam_unique_paired" -
     if [ -s "$bam_unique_paired" ]; then
         samtools index "$bam_unique_paired"
         samtools flagstat "$bam_unique_paired" > "${output_dir}/${sample_name}_unique_paired_stats.txt"
