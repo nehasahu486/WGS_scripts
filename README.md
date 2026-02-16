@@ -4,11 +4,12 @@ This repository contains scripts used for various WGS projects of _Magnaporthe o
 
 ## Table of Contents
 - [WGS - Gene Knockout Confirmation](analysis/wgs_gene_knockout_confirmation.md) - Visualize gene deletions in null mutants
+- [WGS - Gene Knockout Confirmation with SAMtools Flag Filtering](analysis/wgs_gene_knockout_confirmation_with_samtools_filters.md) - More specific gene deletion confirmation
 
 ### Data Structure
 
 - `analysis/` - Detailed Markdown files
-- `scripts/` - Scripts and/or workflows used
+- `scripts/` - Scripts (.sh/bash files) and/or workflows used
 
 
 ## Pipeline Execution Environment
