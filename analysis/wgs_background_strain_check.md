@@ -91,7 +91,7 @@ samtools faidx 70_15.fasta
 
 ### Step 2: Variant Calling with BCFtools
 
-Run the variant calling script using `sbatch 04variant_calling.sh`
+Run the variant calling script using `sbatch 04_variant_calling.sh`
 
 #### Script Configuration
 
@@ -155,7 +155,7 @@ read: <https://samtools.github.io/bcftools/bcftools.html>
 
 ### Step 3: Variant Statistics Generation
 
-Run the statistics generation script using `sbatch 05bcf_stats.sh` to
+Run the statistics generation script using `sbatch 05_bcf_stats.sh` to
 extract the QUAL results
 
 #### Script Configuration
@@ -212,10 +212,10 @@ Each `*variants.txt` file contains multiple sections. The key section
 **For unknown knockout strains (DMST11, DMST7):**
 
     DMST11 vs Guy11:    ? SNP count  
-    DMST11 vs 70_15:    ? SNP count    ← Compare to determine background
+    DMST11 vs 70_15:    ? SNP count    ← Compare to check background
 
     DMST7 vs Guy11:     ? SNP count
-    DMST7 vs 70_15:     ? SNP count     ← Compare to determine background
+    DMST7 vs 70_15:     ? SNP count     ← Compare to check background
 
 ### Load Packages
 
@@ -303,31 +303,6 @@ str(snp_fin)
 snp_filt <- snp_fin %>%
   filter(quality >= 50 & SNPs > 0) 
 
-cat("\nData after quality filtering (Q>=50, SNPs>0):\n")
-```
-
-    ## 
-    ## Data after quality filtering (Q>=50, SNPs>0):
-
-``` r
-cat("Filtered dataset:", nrow(snp_filt), "rows\n")
-```
-
-    ## Filtered dataset: 865 rows
-
-``` r
-cat("Quality range:", min(snp_filt$quality), "-", max(snp_filt$quality), "\n")
-```
-
-    ## Quality range: 50 - 228
-
-``` r
-cat("SNP range:", min(snp_filt$SNPs), "-", max(snp_filt$SNPs), "\n\n")
-```
-
-    ## SNP range: 1 - 1326
-
-``` r
 # Display filtered data
 snp_filt %>% 
   arrange(Background, KO, quality)
@@ -421,7 +396,7 @@ p1 <- ggplot(snp_filt, aes(x = quality, y = SNPs, color = Background, size = SNP
   labs(
     x = "Quality Score", 
     y = "Number of SNPs", 
-    title = "SNP Distribution Analysis for Background Strain Determination",
+    title = "SNP Distribution Analysis for Background Strain check",
     subtitle = "Lower SNP counts indicate correct background strain",
     caption = "Quality threshold: ≥50 | Each point represents a quality bin"
   ) +
@@ -443,9 +418,11 @@ p1 <- ggplot(snp_filt, aes(x = quality, y = SNPs, color = Background, size = SNP
     legend.title = element_text(face = "bold"),
     legend.text = element_text()
   )
-ggsave(here("analysis/images/background_determination_scatter.png"), p1, width = 16, height = 8, dpi = 300)
+
+ggsave(here("analysis/images/background_check_scatter.png"), p1, width = 16, height = 8, dpi = 300)
 ```
-![](images/background_determination_scatter.png)
+
+![](images/background_check_scatter.png)
 
 ### Total SNPs Comparison Bar Plot
 
@@ -480,11 +457,12 @@ p2 <- total_snps %>%
     legend.title = element_text(face = "bold"),
     panel.grid.minor = element_blank()
   )
+
+
 ggsave(here("analysis/images/total_snps_comparison.png"), p2, width = 12, height = 6, dpi = 300)
 ```
 
 ![](images/total_snps_comparison.png)
-
 
 #### Fold Difference Analysis
 
@@ -511,7 +489,7 @@ p3 <- total_snps_wide %>%
   labs(
     x = "Knockout Strain",
     y = "Fold Difference in SNP Count",
-    title = "Confidence Assessment for Background Determination",
+    title = "Confidence Assessment for Background check",
     subtitle = "Higher fold difference = higher confidence in background assignment"
   ) +
   theme_minimal() +
@@ -524,8 +502,10 @@ p3 <- total_snps_wide %>%
     panel.grid.minor = element_blank()
   )
 
+
 ggsave(here("analysis/images/fold_difference_confidence.png"), p3, width = 10, height = 6, dpi = 300)
 ```
+
 ![](images/fold_difference_confidence.png)
 
 From this example, the positive control behaves as expected: DPRE1
