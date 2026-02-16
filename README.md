@@ -10,7 +10,7 @@ This repository contains scripts used for various WGS projects of _Magnaporthe o
 
 - `analysis/` - Detailed Markdown files
 - `scripts/` - Scripts (.sh/bash files) and/or workflows used
-
+- `data/` - Intermediate data files generated from or during analysis (.tsv/.csv/.txt files)
 
 ## Pipeline Execution Environment
 
